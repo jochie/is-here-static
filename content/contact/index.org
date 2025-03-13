@@ -1,0 +1,5 @@
+#+title: Contacting Erwin
+#+featured_image: /images/cover_railroad_2022.jpg
+#+omit_header_text: true
+
+If you want to contact Erwin, you are invited to reach out via the Fediverse (Mastodon, e.a.). You can find a link to his active account at the top or bottom of all pages. Other options may work as well, but as they tend to involve email in some form or another, you will find that the response time is a bit /lacking/.

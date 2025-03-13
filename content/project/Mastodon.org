@@ -1,0 +1,31 @@
+#+title: Mastodon server
+#+date: [2023-10-21 Sat 17:32]
+#+summary: Running a personal Mastodon server for fun and no profit
+#+toc: true
+#+tags[]: AWS Terraform
+#+draft: true
+
+* Status
+Active since December 2022.
+* What
+My personal [[https://joinmastodon.org/][Mastodon]] server. The accounts on there are all /me/, at this time.
+* Where
+https://strangeweb.page/
+
+I wanted to keep this relatively separate from other projects, so I registered a =.page= domain.
+* How
+The setup (in AWS) is as follows:
+- Basic Virtual Private Cloud (VPC)
+  Pretty standard setup. A subnet for public facing things (which is the only things in here right now), and one for resources that don't connect out to the internet. Right now there aren't any of the latter, but it is good to be prepared
+- Bastion server
+  A locked down instance that is intended to be the only way to get into the VPC with =ssh=
+- Actual Mastodon server
+- OpenSearch service
+  As I was not sure what kind of resources this might take, I opted for the (12mo free) AWS offer of their lowest end managed OpenSearch setup
+- An S3 bucket for the media associated with posts (in the timeline of my accounts, or my own), with a CloudFront shield in front of it
+- Terraform code to set up the AWS resources
+* Code and related things
+- Mastodon [[https://docs.joinmastodon.org/user/run-your-own/][instructions]] for setting up your own server
+- [[https://github.com/jochie/misc/blob/master/AWS/upscale-downscale.sh][A script]] to temporarily bump up the instance size, when I'm upgrading to a newer Mastodon version.
+
+  Day to day running takes fewer resources than some of those upgrade steps, amusingly enough, so I switch to a bigger size, do what needs to be done, and then revert to the original size

@@ -1,0 +1,14 @@
+#+title: About All This
+#+featured_image: /images/cover_keyboard_breadboard_2011.jpeg
+#+omit_header_text: true
+
+* The Person
+Erwin is a Dutch citizen, living in the United States of America. He considers himself a coder, a programmer, a software engineer, whatever title gets the point across.
+
+Most of his [[https://github.com/jochie][Github]] repositories are private, but he shares a few scripts written over the years, for fun or for practical purposes.
+
+His time on +Twitter+ "X" has come to an end and instead you can find him hang out [[https://strangeweb.page/@jochie][on the Fediverse]] which, for all its own flaws, has been a much more attractive and friendly alternative.
+* This Domain
+The =is-here.com= domain was registered a long time ago, for reasons mostly forgotten. Domains and email addresses with it can be funny wordplay, until you find yourself needing to spell out your email address to people that had no idea that domain names can have dashes in them, and that they are actually significant.
+* The Disclaimer
+Any opinions on this website are Erwin's, not those of his employers, past or present.

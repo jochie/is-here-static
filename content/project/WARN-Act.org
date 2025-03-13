@@ -1,0 +1,24 @@
+#+title: WARN Act Bot
+#+date: [2023-10-21 Sat 21:50]
+#+summary: Running a bot tracking California WARN Act notices, sharing the updates
+#+toc: true
+#+tags[]: AWS Terraform
+#+draft: true
+
+* Status
+Active since around April 2023.
+* What
+As I understand it, there are WARN Acts in most states (maybe all) that require employers of companies over a certain size to give a heads-up to the state when they plan to let go for one reason or another. This could be for permanent closure of a place of business, redundancies for whatever reason, and some other reasons I can't think of right now. Many states make the notices available in some form on the web. Sadly they don't seem to have considered standardizing that, so automation based on the content found online is a challenge.
+
+In my case, I've automated checking the notices for the [[https://edd.ca.gov/en/jobs_and_training/Layoff_Services_WARN][California EDD]], and post the incremental changes (summarized where possible) on the Fediverse.
+* Where
+https://botsin.space/@warn_act_ca
+* How
+The setup (in AWS) is as follows:
+- An S3 bucket to maintain state from one run to another
+- A few Systems Manager Parameter Store entries for the knowledge of where the bot is and the token to post to its timeline
+- A Lambda that is triggered from EventBridge on a regular basis that checks the California website
+- An SQS queue through which to manage the posts to the bot account, with a Lambda consumer that does that work
+- Terraform code to create these resources and some tangentially related ones
+* Code
+https://github.com/jochie/WARN

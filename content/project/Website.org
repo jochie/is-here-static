@@ -1,0 +1,80 @@
+#+title: Website
+#+date: [2023-11-13 Mon 21:08]
+#+lastmod: [2024-04-09 Tue 21:21]
+#+summary: Maintaining this website
+#+toc: true
+#+tags[]: AWS Hugo Docker
+#+draft: false
+
+* Status
+Active in its current form since November 2023.
+* What
+My personal website.
+* Where
+Right [[https://is-here.com/][here]].
+* How
+Everything on here has been generated elsewhere and then dropped in an [[https://aws.amazon.com/][AWS]] S3 bucket, made available through a Cloudfront distribution for some encryption goodness.
+
+The content is generated with [[https://gohugo.io/][Hugo]]. I picked the [[https://themes.gohugo.io/themes/gohugo-theme-ananke/][Ananke]] theme, and made some minor modifications:
+
+- Modified the default Hugo RSS template (=layouts/_default/rss.xml=):
+  - Change the feed to include full posts instead of just the summary
+  - Add =<category>= tag(s)
+- Copied and modified the default single (post/project) page (=layouts/_default/single.html=):
+  - Include an optional "Updated ..." bit after the original post date
+  - Move the context menu (with the table of contents and related posts) before the content, which places it to the left of the text, or at the top of page instead of at the bottom in a small screen situation
+- Copied and adapted the main page (=layouts/index.html=) just to make the text there /not/ be centered.
+- Copied and adapted the footer (=layouts/partials/site-footer.html=) just so I could make the copyright years be a range instead of just the current year. I tried to put the beginning of the range in the =copyright= configuration setting but then that ended up looking funny in the RSS source
+
+Beyond that, I've left the theme as-is and I'm taking advantage of its (and Hugo's) features.
+* Keeping up with the Joneses?
+As so often happens, I look away for one minute (alright, closer to 4-5 months) and the version of Hugo that I get when I do a fresh install (from [[https://brew.sh/][Brew]]) is a /bit/ different than what I started with, and that is going to break some things.
+
+To give myself a stable work environment and breathing space I decided to run the =hugo= command inside a quick'n'dirty container:
+
+- The =Dockerfile=
+  #+begin_src text
+    FROM cibuilds/hugo:0.119.0
+
+    EXPOSE 1313
+  #+end_src
+- A super simple =Makefile=
+  #+begin_src text
+    hugo-docker:
+            docker build --tag myhugo .
+
+    server-beta:
+            docker-helper server --bind 0.0.0.0 --environment beta
+
+    server-live:
+            ./docker-helper server --bind 0.0.0.0 --environment live
+
+    deploy-beta:
+            ./docker-helper --environment beta && ./docker-helper deploy --environment beta
+
+    deploy-live:
+            ./docker-helper --environment live && ./docker-helper deploy --environment live
+  #+end_src
+- And a shell script to glue it all together:
+  #+begin_src shell
+    #!/bin/sh
+
+    if [ $# -eq 0 ]; then
+        echo "Usage: $0 <hugo-arguments>" 1>&2
+        exit 1
+    fi
+
+    DIR=$(git rev-parse --show-toplevel)
+    docker run -v $HOME/.aws:/home/circleci/.aws -v $DIR:$DIR -p 1313:1313 -w $(pwd) -it myhugo hugo $*
+  #+end_src
+  That script fires up the container with only the current Git repo exposed within the container, and starting off at the current working directory as well, then running the =hugo= version that I grabbed. It also shares =~/.aws= for the deployment steps.
+
+Now I can run a command like this and I can sanity check that the site is going to look ok with that particular version, and then later figure out what needs to be fixed as I nudge the version along at my own pace:
+#+begin_src shell
+make server-beta
+#+end_src
+
+And then deploy when I'm happy:
+#+begin_src shell
+make deploy-live
+#+end_src

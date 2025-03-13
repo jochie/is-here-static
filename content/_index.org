@@ -1,0 +1,7 @@
+#+title: Start at the beginning
+
+For a long time you could find Erwin's dusty [[https://wordpress.com/][Wordpress]] installation here. Then, when he eventually stopped using [[https://www.dreamhost.com/][DreamHost]] altogether and parked the website in an [[https://aws.amazon.com/][AWS]] S3 /bucket/, it was just a static page with a few links.
+
+Now it's being replaced by something that attempts to strike a balance between the two: Multiple pages for different purposes, but it's generated locally (courtesy of [[https://gohugo.io/][Hugo]] at this time) and then synced over to that same S3 bucket, so that serving it up is about as efficient as it can get (which is just the way he likes it).
+
+At this time you can find something akin to [[post][blog posts]] and a growing list of [[project][personal projects]].
