@@ -1,0 +1,4 @@
+[submodule "themes/ananke"]
+	path = themes/ananke
+	url = https://github.com/jochie/gohugo-theme-ananke
+	branch = is-here-static

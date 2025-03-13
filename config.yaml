@@ -1,0 +1,81 @@
+title:        "East of the Sun, West of the Moon"
+languageCode: "en-us"
+theme:        "ananke"
+
+copyright: "Erwin Harte"
+
+# I enable this, but my actual environment is "live", not "production", so
+# at the moment I reject all (search engine) bots, for whatever that's worth.
+enableRobotsTXT: true
+
+# omit_header_text: true
+
+menu:
+  main:
+    - name: 'Posts'
+      pageRef: '/post/'
+      weight: 10
+    - name: 'Projects'
+      pageRef: '/project/'
+      weight: 20
+    - name: 'Contact'
+      pageRef: '/contact'
+      weight: 30
+    - name: 'About'
+      pageRef: '/about'
+      weight: 40
+
+markup:
+  highlight:
+    # lineNos: true
+    # lineNumbersInTable: true
+    # Doesn't seem to work?
+
+params:
+  author: "Erwin"
+  # omit_header_text: true
+  recent_posts_number: 1
+  show_reading_time: true
+  # https://github.com/tachyons-css/tachyons/blob/v4.7.0/src/_skins.css#L96
+  # body_classes: "avenir bg-near-black"
+  # https://tachyons.io/docs/themes/skins/
+  # text_color: "yellow"
+  ananke_socials:
+    - name: "mastodon"
+      url:  "https://strangeweb.page/@jochie"
+      rel:  "me noopener"
+    - name: "github"
+      url:  "https://github.com/jochie"
+      rel:  "me noopener"
+    - name: "stackoverflow"
+      url: "https://stackoverflow.com/users/19301214/"
+    - name: "linkedin"
+      url:  "https://www.linkedin.com/in/erwinharte/"
+      rel: "me noopener"
+      share: false
+    - name: "RSS"
+      url:  "/post/index.xml"
+
+  # featured_image: "/images/cover_railroad_2022.jpg"
+  # By setting this to a section with nothing in it, I avoid including any
+  # posts on the main page.
+  mainSections: "nothing"
+
+permalinks:
+  post: '/post/:year/:month/:title/'
+#  project: '/project/:title/'
+
+# "EN9LDKWI89FLN"
+cloudfront: &distid "EN9LDKWI89FLN"
+
+baseURL: "https://is-here.com/"
+
+deployment:
+  order: [".jpg$", ".jpeg$", ".gif$", ".png$"]
+  targets:
+    - name: "beta"
+      url: "s3://is-here.com?region=us-west-2&prefix=beta/"
+      cloudFrontDistributionId: *distid
+    - name: "live"
+      url: "s3://is-here.com?region=us-west-2&prefix=/"
+      cloudFrontDistributionId: *distid
