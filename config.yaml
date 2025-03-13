@@ -8,8 +8,6 @@ copyright: "Erwin Harte"
 # at the moment I reject all (search engine) bots, for whatever that's worth.
 enableRobotsTXT: true
 
-# omit_header_text: true
-
 menu:
   main:
     - name: 'Posts'
@@ -33,13 +31,8 @@ markup:
 
 params:
   author: "Erwin"
-  # omit_header_text: true
   recent_posts_number: 1
   show_reading_time: true
-  # https://github.com/tachyons-css/tachyons/blob/v4.7.0/src/_skins.css#L96
-  # body_classes: "avenir bg-near-black"
-  # https://tachyons.io/docs/themes/skins/
-  # text_color: "yellow"
   ananke_socials:
     - name: "mastodon"
       url:  "https://strangeweb.page/@jochie"
@@ -56,26 +49,8 @@ params:
     - name: "RSS"
       url:  "/post/index.xml"
 
-  # featured_image: "/images/cover_railroad_2022.jpg"
-  # By setting this to a section with nothing in it, I avoid including any
-  # posts on the main page.
   mainSections: "nothing"
 
 permalinks:
   post: '/post/:year/:month/:title/'
-#  project: '/project/:title/'
 
-# "EN9LDKWI89FLN"
-cloudfront: &distid "EN9LDKWI89FLN"
-
-baseURL: "https://is-here.com/"
-
-deployment:
-  order: [".jpg$", ".jpeg$", ".gif$", ".png$"]
-  targets:
-    - name: "beta"
-      url: "s3://is-here.com?region=us-west-2&prefix=beta/"
-      cloudFrontDistributionId: *distid
-    - name: "live"
-      url: "s3://is-here.com?region=us-west-2&prefix=/"
-      cloudFrontDistributionId: *distid
