@@ -1,0 +1,10 @@
+<div class="goat svg-container">
+  {{ with diagrams.Goat .Inner }}
+    <svg xmlns="http://www.w3.org/2000/svg"
+         font-family="Menlo,Lucida Console,monospace"
+         viewBox="0 0 {{ .Width }} {{ .Height }}"
+      >
+      {{ .Inner }}
+    </svg>
+  {{ end }}
+</div>

@@ -1,0 +1,19 @@
+{{- if .Params.Comments -}}
+<link rel="stylesheet" type="text/css" href="{{.Site.BaseURL}}static/css/mastodon-comments.css" />
+<p>
+  You can leave a comment by replying to this
+  <a class="link" target="_blank" href="https://{{- index .Params.Comments 0 -}}/@{{- index .Params.Comments 1 -}}/{{- index .Params.Comments 2 -}}">post</a>
+  with your own Mastodon/Fediverse account.
+</p>
+<p><button id="load-comment"><span id="load-comment-text">Load comments</span></button></p>
+<p id="mastodon-comments-list"></p>
+<noscript><p>You need JavaScript enabled to load comments dynamically.</p></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.1/purify.min.js" integrity="sha512-uHOKtSfJWScGmyyFr2O2+efpDx2nhwHU2v7MVeptzZoiC7bdF6Ny/CmZhN2AwIK1oCFiVQQ5DA/L9FSzyPNu6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/static/js/mastodon-comments.js"></script>
+<script type="text/javascript">
+  document.getElementById("load-comment").addEventListener("click", function() {
+      load_mastodon_comments('{{- index .Params.Comments 0 -}}',
+			     '{{- index .Params.Comments 2 -}}')
+  })
+</script>
+{{- end -}}

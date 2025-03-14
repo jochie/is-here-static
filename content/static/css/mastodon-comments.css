@@ -1,0 +1,38 @@
+.mastodon-comment {
+    background-color: #eee;
+    border-left: 1px solid grey;
+    padding: 3px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    .content {
+        flex-grow: 2;
+    }
+    .avatar img {
+        margin-right: 1rem;
+        min-width: 60px;
+    }
+    .author {
+        padding-top: 0;
+        display: flex;
+        .date {
+            margin-left: auto;
+        }
+    }
+    .disabled, .mention {
+        color: #888;
+    }
+    .stats {
+	color: darkblue;
+	font-size: 0.7em;
+    }
+}
+
+.mastodon-comment-leaf {
+    border-radius: 0 0 0 10px;
+    border-bottom: 1px solid grey;
+    margin-bottom: 1rem;
+}
+
+.mastodon-comment-content p:first-child {
+    margin-top: 0;
+}
