@@ -3,7 +3,4 @@ command: hugo
 public: public
 domains:
   # Primary domain
-  - is-here.com
-  # Domains that redirect to the primary
-  - www.is-here.com
   - beta.is-here.com
