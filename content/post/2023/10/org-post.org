@@ -1,0 +1,125 @@
+#+title: Post Title III
+#+author: Erwin
+#+date: [2023-10-16 Mon 21:16]
+#+summary: My Oddball Summary
+#+tags[]: One-Two Three
+#+keywords: Alpha Beta
+#+categories[]: Drafts Testing
+#+slug: testslug
+#+toc: true
+#+draft: true
+
+* C code
+Some sample C code, which does /nothing/ useful.
+[fn:: But it certainly demonstrates the syntax highlighting of a block of code]
+
+# {{ highlight go "linenos=true" }}
+#+begin_src c 
+  #include <stdio.h>
+
+  int main() {
+          return 0;
+  }
+#+end_src
+* SQL code
+#+begin_src sql
+  SELECT
+    *
+  FROM
+    setting
+  WHERE
+    value <> ''
+#+end_src
+* Perl code
+#+begin_src perl
+  #!/usr/bin/perl
+
+  use strict;
+  use warnings;
+
+  # Main loop
+  while (<>) {
+      chomp;
+      printf "%s - %s\n", scalar(localtime()), $_;
+  }
+#+end_src
+* Lua code
+#+begin_src lua
+  -- Some comment
+  if true then
+          print("Hello")
+  else
+          print("World")
+          --[[
+                  Multiline
+                  comment
+          ]]
+  end
+#+end_src
+* Python code
+#+begin_src python
+   def fac(x):
+       if x < 0:
+           return 0
+       elif x == 1:
+           return 1
+       else:
+           return x * fac(x-1)
+
+   # 10!
+   print fac(10)
+#+end_src
+* Org-Mode tables
+
+| Header1 | Header2 | Header3 |
+|---------+---------+---------|
+| Cell1   | Cell2   | Cell3   |
+|---------+---------+---------|
+| Cell4   | Cell5   | Cell6   |
+
+* ASCII Graphs?
+
+#+begin_export html
+
+Trees:
+{{% goat %}}
+      .               .                .               .--- 1          .-- 1     / 1
+     / \              |                |           .---+            .-+         +
+    /   \         .---+---.         .--+--.        |   '--- 2      |   '-- 2   / \ 2
+   +     +        |       |        |       |    ---+            ---+          +
+  / \   / \     .-+-.   .-+-.     .+.     .+.      |   .--- 3      |   .-- 3   \ / 3
+ /   \ /   \    |   |   |   |    |   |   |   |     '---+            '-+         +
+ 1   2 3   4    1   2   3   4    1   2   3   4         '--- 4          '-- 4     \ 4
+{{% /goat %}}
+
+#+end_export
+
+#+begin_export html
+{{% goat %}}
+ Linux -+- Android
+        +- Debian --- Ubuntu
+{{% /goat %}}
+#+end_export
+
+* Questions to research:
+What's the difference between:
+- Tags (visible below)
+- Categories
+- (Meta) Keywords
+* References
+- https://gohugo.io/getting-started/usage/
+- https://gohugo.io/hosting-and-deployment/hugo-deploy/
+- https://gohugo.io/content-management/front-matter/
+- https://gohugo.io/content-management/syntax-highlighting/#example-highlight-shortcode
+- https://gohugo.io/content-management/shortcodes/#highlight
+- https://themes.gohugo.io/themes/gohugo-theme-ananke/
+- https://github.com/theNewDynamic/gohugo-theme-ananke/blob/master/exampleSite/config.toml
+- https://nethuml.github.io/posts/2022/06/blog-setup-with-hugo-org-mode/
+- https://blog.cavelab.dev/2021/08/deploying-hugo-blog-to-s3/
+- https://www.reddit.com/r/gohugo/comments/wz95fo/attempting_to_add_multiple_socials_to_ananke_theme/
+- https://discourse.gohugo.io/t/how-to-use-org-mode-with-hugo/6430/14
+- https://asl.umbc.edu/helppages/hugo/hugo_orgmode/
+- https://bwaycer.github.io/hugo_tutorial.hugo/extras/menus/
+- https://gohugo.io/content-management/diagrams/
+  https://github.com/blampe/goat/blob/main/examples/flow-chart.txt
+  

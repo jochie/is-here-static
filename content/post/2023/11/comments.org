@@ -1,0 +1,65 @@
+#+title: Connecting the dots
+#+date: [2023-11-14 Tue 22:20]
+#+summary: Following in the footsteps of many others, adding hypothetical comments to the blog posts
+#+tags[]: Hugo Mastodon Meta
+#+toc: true
+#+draft: true
+
+* Yes, I know this is not an original idea
+As is often the case, the fun is in the journey, not the destination. Or put a little differently, I do not actually expect that many comments on my posts, but I'm hoping to have some fun making things exactly the way I like and learn something while doing it.
+
+* The intended goals
+- Somehow track which Mastodon post is associated with a blog or project post
+- Include this URL in the RSS feed, as an optional =<comments>...</comments>= tag
+- Link to the URL in the blog or project post
+
+* Future stretch goals
+- Dynamically load comments, nesting as appropriate
+- List statistics for the Mastodon post (boosts, likes, comments)?
+
+* Changes made:
+In the front matter section of a post (which I write with Org syntax), add a =#+comments[]: ...= entry, like this:
+#+begin_src org
+  ,#+comments[]: <host> <username> <id>
+#+end_src
+
+In the =layouts/_default/rss.xml= file, insert this snippet in the =<item>= block:
+#+begin_src html
+  {{- if .Params.Comments -}}
+  <comments>https://{{- index .Params.Comments 0 -}}/@{{- index .Params.Comments 1 -}}/{{- index .Params.Comments 2 -}}</comments>
+  {{- end -}}
+#+end_src
+
+If someone knows how to create a =#+comments:= entry in an Org file that turns it into something with =host=, =username= and =id= fields that I can reference instead, that would simplify things a bit. I'm trying to avoid embedding yaml/toml/json in my Org files. Another option would be to only put the =id= in that field and put the =host= and =username= like [[https://danielpecos.com/2022/12/25/mastodon-as-comment-system-for-your-static-blog/][Daniel Pecos]] did, but I feel that removes some flexiblity.
+
+Next up, including a snippet to a so-called partial in the =single.html=:
+#+begin_src diff
+       {{- .Content -}}
+       {{- partial "tags.html" . -}}
++      {{- partial "mastodon-link.html" . -}}
+       <div class="mt6 instapaper_ignoref">
+       {{ if .Site.DisqusShortname }}
+       {{ template "_internal/disqus.html" . }}
+#+end_src
+
+Where =layouts/partials/mastodon-link.html= looks like this:
+#+begin_src html
+{{- if .Params.Comments -}}
+<p>
+  You can leave a comment by replying to this
+  <a class="link" target="_blank" href="https://{{- index .Params.Comments 0 -}}/@{{- index .Params.Comments 1 -}}/{{- index .Params.Comments 2 -}}">post</a>
+  with your own Mastodon/Fediverse account.
+</p>
+{{- end -}}
+#+end_src
+The "Reply" link that [[https://amnesiak.org/post/2021/01/30/hugo-blog-with-mastodon-comments-extended/][Tony Cheneau at amnesiak.org]] includes doesn't work. My best guess is that support for the =/interact/<id>?type=reply= link has been removed since Tony wrote it like that.
+
+I'm not as adept at JavaScript or CSS as some of the others below
+
+* References:
+- https://carlschwan.eu/2020/12/29/adding-comments-to-your-static-blog-with-mastodon/
+- https://holgerschurig.github.io/en/hugo-and-mastodon-comments/
+- https://mastodon.online/@veronica/110028499674748958
+- https://amnesiak.org/post/2021/01/30/hugo-blog-with-mastodon-comments-extended/
+- https://danielpecos.com/2022/12/25/mastodon-as-comment-system-for-your-static-blog/
+- https://lauralisscott.com/blog/mastodon-comments-hugo-static-site/

@@ -1,0 +1,24 @@
+#+title: Hello again, world?
+#+date: [2023-11-13 Mon 21:09]
+#+lastmod: [2023-11-13 Mon 20:21]
+#+summary: Giving this another try (refreshing my web home of several decades)
+#+tags[]: Hugo Mastodon Meta
+#+toc: true
+#+draft: false
+#+comments[]: strangeweb.page jochie 111407198734333719
+
+* From Twitter to Mastodon
+For many years Twitter was my main social media account. My Facebook account has not been visited in many months and Instagram has mostly been kept alive to follow some friends and family's postings. Though I originally did post from time to time, the last few years it had turned mostly into a read-only account.
+
+Then last year around the time of the change in ownership, I gave up on it and began an effort to migrate my 
+/network/ to Mastodon or, more accurately the [[https://en.wikipedia.org/wiki/Fediverse][Fediverse]]. Initially at [[https://mastodon.social/@jochie][mastodon.social]], the flagship server for the Mastodon software, with an account that I had created in May 2022 but began using in earnest in October. Later I migrated to an account on a [[https://strangeweb.page/@jochie][personal server]].
+
+* Starting to feel an itch
+As I was posting on my Mastodon account, I regularly found myself writing more than was going to fit in the space of the default 500 characters. Sure I could change that default (although it is a /little/ bit more work than just changing a configuration file entry), but that felt wrong. To me, the fact that I was bumping against that ceiling suggested I was looking for a different medium for those posts.
+
+* Static Site Generator to the rescue
+While I did feel the itch to write some longer form things, the idea of running (potentially vulnerable) infrastructure for this that would need to be maintained did not appeal to me.
+
+Comes along [[https://en.wikipedia.org/wiki/Hugo_(software)][Hugo]] (docs, themes, etc at the [[https://gohugo.io/][official website]]) which comes with a generous set of themes that can be tweaked as needed, allows me to write posts and other pages in [[https://orgmode.org/][Org Mode]] syntax, and has built-in support for deploying its output into an AWS S3 bucket.
+
+More details on the [[/project/website/][project page]].
