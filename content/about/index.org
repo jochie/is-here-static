@@ -1,5 +1,5 @@
 #+title: About All This
-#+featured_image: /images/cover_keyboard_breadboard_2011.jpeg
+#+featured_image: ../images/cover_keyboard_breadboard_2011.jpeg
 #+omit_header_text: true
 
 * The Person

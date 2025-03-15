@@ -1,4 +1,5 @@
 #+title: Start at the beginning
+#+featured_image: images/cover_railroad_2022.jpg
 
 For a long time you could find Erwin's dusty [[https://wordpress.com/][Wordpress]] installation here. Then, when he eventually stopped using [[https://www.dreamhost.com/][DreamHost]] altogether and parked the website in an [[https://aws.amazon.com/][AWS]] S3 /bucket/, it was just a static page with a few links.
 
