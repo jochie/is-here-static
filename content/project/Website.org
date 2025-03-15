@@ -1,19 +1,19 @@
 #+title: Website
 #+date: [2023-11-13 Mon 21:08]
-#+lastmod: [2024-04-09 Tue 21:21]
+#+lastmod: [2025-03-14 Fri 22:40]
 #+summary: Maintaining this website
 #+toc: true
 #+tags[]: AWS Hugo Docker
 #+draft: false
 
 * Status
-Active in its current form since November 2023.
+Active in its current form since November 2023 and its current location since March 2025.
 * What
 My personal website.
 * Where
 Right [[https://is-here.com/][here]].
-* How
-Everything on here has been generated elsewhere and then dropped in an [[https://aws.amazon.com/][AWS]] S3 bucket, made available through a Cloudfront distribution for some encryption goodness.
+* Content
+Everything on here has been generated once by a so-called [[https://en.wikipedia.org/wiki/Static_site_generator][SSG]] and then dropped in place.
 
 The content is generated with [[https://gohugo.io/][Hugo]]. I picked the [[https://themes.gohugo.io/themes/gohugo-theme-ananke/][Ananke]] theme, and made some minor modifications:
 
@@ -27,8 +27,12 @@ The content is generated with [[https://gohugo.io/][Hugo]]. I picked the [[https
 - Copied and adapted the footer (=layouts/partials/site-footer.html=) just so I could make the copyright years be a range instead of just the current year. I tried to put the beginning of the range in the =copyright= configuration setting but then that ended up looking funny in the RSS source
 
 Beyond that, I've left the theme as-is and I'm taking advantage of its (and Hugo's) features.
+* Hosting
+Until March 2025 the static site was hosted in an [[https://aws.amazon.com/][AWS]] S3 bucket, made available through a Cloudfront distribution to make it available via =https=.
+
+At that point, I moved it to [[https://www.statichost.eu/][statichost.eu]], which specializes in hosting SSGs, directly from Git repositories, and hosting it with =http= and =https=.
 * Keeping up with the Joneses?
-As so often happens, I look away for one minute (alright, closer to 4-5 months) and the version of Hugo that I get when I do a fresh install (from [[https://brew.sh/][Brew]]) is a /bit/ different than what I started with, and that is going to break some things.
+As so often happens, I looked away for one minute (alright, closer to 4-5 months) and the version of Hugo that I get when I do a fresh install (from [[https://brew.sh/][Brew]]) is a /bit/ different than what I started with, and that is going to break some things.
 
 To give myself a stable work environment and breathing space I decided to run the =hugo= command inside a quick'n'dirty container:
 
@@ -78,3 +82,5 @@ And then deploy when I'm happy:
 #+begin_src shell
 make deploy-live
 #+end_src
+
+Noting that now that I've moved to [[https://www.statichost.eu/][statichost.eu]] the =deploy-*= targets are obsolete, but it's still useful to test locally with =server-*=.
