@@ -46,7 +46,8 @@ params:
       url:  "https://www.linkedin.com/in/erwinharte/"
       rel: "me noopener"
       share: false
-    - name: "RSS"
+    - name: "rss"
+      label: "RSS"
       url:  "/post/index.xml"
 
   mainSections: "nothing"
