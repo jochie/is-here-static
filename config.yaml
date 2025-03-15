@@ -54,3 +54,7 @@ params:
 permalinks:
   post: '/post/:year/:month/:title/'
 
+baseURL: "https://is-here.com/"
+
+deployment:
+  order: [".jpg$", ".jpeg$", ".gif$", ".png$"]
